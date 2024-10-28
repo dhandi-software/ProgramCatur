@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Choose Game Mode</title>
+    <link rel="stylesheet" href="/css/game-mode.css" />
+    <!-- Import particles.js dari CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+  </head>
+  <body>
+    <!-- Background Particles -->
+    <div id="particles-js"></div>
+
+    <!-- Kontainer Utama untuk Pilihan Mode -->
+    <div class="container">
+      <!-- Tombol Suara -->
+      <button class="sound-button" onclick="toggleSound()">🔊</button>
+      <!-- Tombol Close -->
+      <button class="close-button" onclick="closeModal()">✕</button>
+
+      <!-- Judul -->
+      <h1 class="title">CHOOSE GAME MODE</h1>
+
+      <!-- Kontainer Mode untuk Pemain vs Pemain dan Pemain vs AI -->
+      <div class="mode-container">
+        <!-- Mode Pemain vs Pemain -->
+        <div class="mode-card" onclick="startPvP()">
+          <div class="card-content">
+            <img src="/images/player-vs-player.png" alt="Player vs Player" />
+            <p>Pemain vs Pemain</p>
+          </div>
+        </div>
+
+        <!-- Mode Pemain vs AI -->
+        <div class="mode-card ai-mode">
+          <div class="card-content">
+            <img src="/images/player-vs-ai.png" alt="Player vs AI" />
+            <p>Pemain vs AI</p>
+          </div>
+
+          <!-- Pilihan Kesulitan AI -->
+          <div class="difficulty-level">
+            <button class="star-button" onclick="setDifficulty(1)">
+              ★ Easy
+            </button>
+            <button class="star-button" onclick="setDifficulty(2)">
+              ★★ Medium
+            </button>
+            <button class="star-button" onclick="setDifficulty(3)">
+              ★★★ Hard
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Suara Catur -->
+    <audio id="chess-sound" src="/sounds/chess-sound.mp3" loop></audio>
+
+    <script>
+      function startPvP() {
+        window.location.href = "/play/pvp";
+      }
+
+      function setDifficulty(level) {
+        window.location.href = `/play/ai?difficulty=${level}`;
+      }
+
+      function closeModal() {
+        window.location.href = "/";
+      }
+
+      function toggleSound() {
+        const sound = document.getElementById("chess-sound");
+        if (sound.paused) {
+          sound.play();
+        } else {
+          sound.pause();
+        }
+      }
+
+      particlesJS("particles-js", {
+        particles: {
+          number: { value: 150, density: { enable: true, value_area: 800 } },
+          color: { value: "#ffffff" },
+          shape: { type: "circle" },
+          opacity: {
+            value: 0.5,
+            anim: { enable: true, speed: 1, opacity_min: 0.1 },
+          },
+          size: {
+            value: 3,
+            random: true,
+            anim: { enable: true, speed: 1, size_min: 0.1 },
+          },
+          move: { enable: true, speed: 0.3, random: true, out_mode: "out" },
+        },
+        interactivity: {
+          detect_on: "window",
+          events: {
+            onhover: { enable: true, mode: "repulse" },
+            onclick: { enable: true, mode: "repulse" },
+            resize: true,
+          },
+          modes: {
+            repulse: { distance: 150, duration: 0.6 },
+            bubble: { distance: 200, size: 4, duration: 2, opacity: 0.8 },
+          },
+        },
+        retina_detect: true,
+      });
+    </script>
+  </body>
+</html>

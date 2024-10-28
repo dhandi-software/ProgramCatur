@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Informasi Developer</title>
+    <link rel="stylesheet" href="/css/info.css" />
+
+    <!-- Import particles.js dari CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+  </head>
+  <body>
+    <!-- Div untuk efek partikel bintang -->
+    <div id="particles-js"></div>
+
+    <!-- Kontainer utama untuk informasi -->
+    <div class="container info-container">
+      <h1 class="title">Tentang Developer</h1>
+
+      <div class="info-content">
+        <p>Website ini dikembangkan oleh <strong>DACHEES</strong>.</p>
+        <p>
+          Tujuan utama dari website ini adalah untuk menyediakan platform
+          permainan catur dengan pengalaman visual yang menarik dan interaktif.
+        </p>
+        <p>Untuk informasi lebih lanjut, kunjungi situs kami di:</p>
+        <a href="https://www.example.com" target="_blank" class="info-link"
+          >www.example.com</a
+        >
+      </div>
+
+      <!-- Link Kembali ke Home dengan tombol bergaya -->
+      <a href="/" class="back-button">Kembali ke Home</a>
+    </div>
+
+    <!-- Konfigurasi Particles.js -->
+    <script>
+      particlesJS("particles-js", {
+        particles: {
+          number: { value: 150, density: { enable: true, value_area: 800 } },
+          color: { value: "#ffffff" },
+          shape: { type: "circle" },
+          opacity: {
+            value: 0.5,
+            anim: { enable: true, speed: 1, opacity_min: 0.1 },
+          },
+          size: {
+            value: 3,
+            random: true,
+            anim: { enable: true, speed: 1, size_min: 0.1 },
+          },
+          move: { enable: true, speed: 0.3, random: true, out_mode: "out" },
+        },
+        interactivity: {
+          detect_on: "window",
+          events: {
+            onhover: { enable: true, mode: "repulse" },
+            onclick: { enable: true, mode: "repulse" },
+            resize: true,
+          },
+          modes: {
+            repulse: { distance: 150, duration: 0.6 },
+            bubble: { distance: 200, size: 4, duration: 2, opacity: 0.8 },
+          },
+        },
+        retina_detect: true,
+      });
+    </script>
+  </body>
+</html>

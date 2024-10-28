@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chess Game</title>
+    <link rel="stylesheet" href="/css/game.css" />
+  </head>
+  <body>
+    <div id="particles-js"></div>
+    <div class="container">
+      <h1>THE CHESS CHALLENGE</h1>
+
+      <ul>
+        <div class="div" id="row8">
+          <li class="box" id="b801">Brook</li>
+          <li class="box" id="b802">Bknight</li>
+          <li class="box" id="b803">Bbishop</li>
+          <li class="box" id="b804">Bqueen</li>
+          <li class="box" id="b805">Bking</li>
+          <li class="box" id="b806">Bbishop</li>
+          <li class="box" id="b807">Bknight</li>
+          <li class="box" id="b808">Brook</li>
+        </div>
+
+        <div class="div" id="row7">
+          <li class="box" id="b701">Bpawn</li>
+          <li class="box" id="b702">Bpawn</li>
+          <li class="box" id="b703">Bpawn</li>
+          <li class="box" id="b704">Bpawn</li>
+          <li class="box" id="b705">Bpawn</li>
+          <li class="box" id="b706">Bpawn</li>
+          <li class="box" id="b707">Bpawn</li>
+          <li class="box" id="b708">Bpawn</li>
+        </div>
+
+        <div class="div" id="row6">
+          <li class="box" id="b601"></li>
+          <li class="box" id="b602"></li>
+          <li class="box" id="b603"></li>
+          <li class="box" id="b604"></li>
+          <li class="box" id="b605"></li>
+          <li class="box" id="b606"></li>
+          <li class="box" id="b607"></li>
+          <li class="box" id="b608"></li>
+        </div>
+
+        <div class="div" id="row5">
+          <li class="box" id="b501"></li>
+          <li class="box" id="b502"></li>
+          <li class="box" id="b503"></li>
+          <li class="box" id="b504"></li>
+          <li class="box" id="b505"></li>
+          <li class="box" id="b506"></li>
+          <li class="box" id="b507"></li>
+          <li class="box" id="b508"></li>
+        </div>
+
+        <div class="div" id="row4">
+          <li class="box" id="b401"></li>
+          <li class="box" id="b402"></li>
+          <li class="box" id="b403"></li>
+          <li class="box" id="b404"></li>
+          <li class="box" id="b405"></li>
+          <li class="box" id="b406"></li>
+          <li class="box" id="b407"></li>
+          <li class="box" id="b408"></li>
+        </div>
+
+        <div class="div" id="row3">
+          <li class="box" id="b301"></li>
+          <li class="box" id="b302"></li>
+          <li class="box" id="b303"></li>
+          <li class="box" id="b304"></li>
+          <li class="box" id="b305"></li>
+          <li class="box" id="b306"></li>
+          <li class="box" id="b307"></li>
+          <li class="box" id="b308"></li>
+        </div>
+
+        <div class="div" id="row2">
+          <li class="box" id="b201">Wpawn</li>
+          <li class="box" id="b202">Wpawn</li>
+          <li class="box" id="b203">Wpawn</li>
+          <li class="box" id="b204">Wpawn</li>
+          <li class="box" id="b205">Wpawn</li>
+          <li class="box" id="b206">Wpawn</li>
+          <li class="box" id="b207">Wpawn</li>
+          <li class="box" id="b208">Wpawn</li>
+        </div>
+
+        <div class="div" id="row1">
+          <li class="box" id="b101">Wrook</li>
+          <li class="box" id="b102">Wknight</li>
+          <li class="box" id="b103">Wbishop</li>
+          <li class="box" id="b104">Wqueen</li>
+          <li class="box" id="b105">Wking</li>
+          <li class="box" id="b106">Wbishop</li>
+          <li class="box" id="b107">Wknight</li>
+          <li class="box" id="b108">Wrook</li>
+        </div>
+      </ul>
+
+      <h2 id="tog">White's Turn</h2>
+      <h2 id="reset-btn">Reset</h2>
+    </div>
+
+    <!-- Tambahkan musik di sini -->
+    <audio autoplay loop>
+      <source src="bossa_uh_potsu.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script src="/js/pvp.js"></script>
+
+    <!-- Pustaka Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <!-- Konfigurasi Particles.js -->
+    <script>
+      particlesJS("particles-js", {
+        particles: {
+          number: {
+            value: 150,
+            density: { enable: true, value_area: 800 },
+          },
+          color: { value: "#ffffff" },
+          shape: {
+            type: "circle",
+            stroke: { width: 0, color: "#000000" },
+          },
+          opacity: {
+            value: 0.5,
+            anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false },
+          },
+          size: {
+            value: 3,
+            random: true,
+            anim: { enable: true, speed: 1, size_min: 0.1, sync: false },
+          },
+          move: { enable: true, speed: 0.3, random: true, out_mode: "out" },
+        },
+        interactivity: {
+          detect_on: "window",
+          events: {
+            onhover: { enable: true, mode: "repulse" },
+            onclick: { enable: true, mode: "repulse" },
+            resize: true,
+          },
+          modes: {
+            repulse: { distance: 150, duration: 0.6 },
+            bubble: { distance: 200, size: 4, duration: 2, opacity: 0.8 },
+          },
+        },
+        retina_detect: true,
+      });
+    </script>
+  </body>
+</html>

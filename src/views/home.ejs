@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DACHEES</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <!-- Div untuk efek partikel bintang -->
+    <div id="particles-js"></div>
+
+    <!-- Kontainer utama untuk konten -->
+    <div class="container">
+      <h1 class="title">DA CHESS</h1>
+
+      <!-- Papan Catur Galaksi -->
+      <div class="galaxy-chessboard">
+        <img src="/images/chessboard.jpg" alt="Galaxy Chessboard" />
+      </div>
+
+      <!-- Kontainer tombol -->
+      <div class="buttons">
+        <!-- Tombol Play -->
+        <button id="play-button" onclick="playGame()">
+          <img src="/images/play_button.png" alt="Play Button" />
+        </button>
+
+        <!-- Tombol Info -->
+        <button id="info-button" onclick="showInfo()">
+          <img src="/images/info_button.png" alt="Info Button" />
+        </button>
+      </div>
+    </div>
+
+    <script src="/js/main.js"></script>
+    <!-- Import particles.js dari CDN -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <!-- Konfigurasi Particles.js -->
+    <script>
+      particlesJS("particles-js", {
+        particles: {
+          number: {
+            value: 150,
+            density: {
+              enable: true,
+              value_area: 800,
+            },
+          },
+          color: { value: "#ffffff" },
+          shape: {
+            type: "circle",
+            stroke: {
+              width: 0,
+              color: "#000000",
+            },
+          },
+          opacity: {
+            value: 0.5,
+            anim: {
+              enable: true,
+              speed: 1,
+              opacity_min: 0.1,
+              sync: false,
+            },
+          },
+          size: {
+            value: 3,
+            random: true,
+            anim: {
+              enable: true,
+              speed: 1,
+              size_min: 0.1,
+              sync: false,
+            },
+          },
+          move: {
+            enable: true,
+            speed: 0.3,
+            random: true,
+            out_mode: "out",
+          },
+        },
+        interactivity: {
+          detect_on: "window", // Deteksi interaksi pada seluruh jendela
+          events: {
+            onhover: {
+              enable: true,
+              mode: "repulse", // Partikel menjauh saat hover
+            },
+            onclick: {
+              enable: true,
+              mode: "repulse", // Partikel menjauh saat klik atau sentuh
+            },
+            resize: true,
+          },
+          modes: {
+            repulse: {
+              distance: 150, // Jarak partikel menjauh saat disentuh
+              duration: 0.6, // Durasi efek repulse
+            },
+            bubble: {
+              distance: 200,
+              size: 4,
+              duration: 2,
+              opacity: 0.8,
+            },
+          },
+        },
+        retina_detect: true,
+      });
+    </script>
+  </body>
+</html>
