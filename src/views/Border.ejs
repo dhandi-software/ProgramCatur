@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Player Form</title>
+    <link rel="stylesheet" href="/css/border.css" />
+  </head>
+  <body>
+    <!-- Div untuk efek partikel bintang -->
+    <div id="particles-js"></div>
+
+    <!-- Form Container -->
+    <div class="form-container">
+      <h1>Player Information</h1>
+      <form id="player-form">
+        <!-- Player 1 Section -->
+        <div class="player-section" id="player1-section">
+          <h2>Player 1</h2>
+          <label for="player1-name">Nama:</label>
+          <input
+            type="text"
+            id="player1-name"
+            name="player1-name"
+            placeholder="Masukkan nama Player 1"
+            required
+          />
+
+          <label for="player1-npm">NPM:</label>
+          <input
+            type="number"
+            id="player1-npm"
+            name="player1-npm"
+            placeholder="Masukkan NPM Player 1"
+            required
+          />
+
+          <button type="button" id="next-button">Next</button>
+          <button type="button" id="play-button" onclick="playGame()">
+            Kembali kehalaman
+          </button>
+        </div>
+
+        <!-- Player 2 Section (Initially Hidden) -->
+        <div class="player-section hidden" id="player2-section">
+          <h2>Player 2</h2>
+          <label for="player2-name">Nama:</label>
+          <input
+            type="text"
+            id="player2-name"
+            name="player2-name"
+            placeholder="Masukkan nama Player 2"
+            required
+          />
+
+          <label for="player2-npm">NPM:</label>
+          <input
+            type="number"
+            id="player2-npm"
+            name="player2-npm"
+            placeholder="Masukkan NPM Player 2"
+            required
+          />
+
+          <button type="button" id="back-button">Back</button>
+          <button type="button" id="submit-button" onclick="PVP()">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <script src="/js/border.js"></script>
+
+    <!-- Import particles.js dari CDN -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+      particlesJS("particles-js", {
+        particles: {
+          number: {
+            value: 150,
+            density: { enable: true, value_area: 800 },
+          },
+          color: { value: "#ffffff" },
+          shape: { type: "circle" },
+          opacity: { value: 0.5 },
+          size: { value: 3, random: true },
+          move: { enable: true, speed: 0.3, random: true },
+        },
+        interactivity: {
+          detect_on: "window",
+          events: {
+            onhover: { enable: true, mode: "repulse" },
+            onclick: { enable: true, mode: "repulse" },
+          },
+          modes: {
+            repulse: { distance: 150, duration: 0.6 },
+          },
+        },
+        retina_detect: true,
+      });
+
+      function playGame() {
+        window.location.href = "/game";
+      }
+
+      function PVP() {
+        const player1Name = document
+          .getElementById("player1-name")
+          .value.trim();
+        const player1NPM = document.getElementById("player1-npm").value.trim();
+        const player2Name = document
+          .getElementById("player2-name")
+          .value.trim();
+        const player2NPM = document.getElementById("player2-npm").value.trim();
+
+        if (!player1Name || !player1NPM || !player2Name || !player2NPM) {
+          alert("Semua field harus diisi!");
+          return;
+        }
+
+        if (isNaN(player1NPM) || isNaN(player2NPM)) {
+          alert("NPM harus berupa angka.");
+          return;
+        }
+
+        // Redirect ke /play/pvp dengan query string
+        const url = `/play/pvp?player1Name=${encodeURIComponent(
+          player1Name
+        )}&player1NPM=${player1NPM}&player2Name=${encodeURIComponent(
+          player2Name
+        )}&player2NPM=${player2NPM}`;
+        window.location.href = url;
+      }
+    </script>
+  </body>
+</html>
