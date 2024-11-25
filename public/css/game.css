@@ -10,7 +10,7 @@ body {
   justify-content: center;
   overflow-x: hidden;
   font-family: Arial, sans-serif;
-  background: #333; /* Gunakan warna solid jika partikel tidak muncul */
+  background: #000000; 
   height: 100vh;
 }
 
@@ -89,4 +89,59 @@ li {
 
 .check {
   background-color: red !important;
+}
+
+
+.players-info {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.player-1-info {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 18px;
+  background-color: #ffe4b5;
+  border: 2px solid #ffd700;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+#tog {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #444;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.container {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto auto;
+  row-gap: 20px;
+  justify-items: center;
+}
+
+#reset-btn {
+  background-color: #4caf50;
+  color: white;
+  padding: 15px 30px;
+  font-size: 18px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+#reset-btn:hover {
+  background-color: #45a049;
+}
+
+#reset-btn:active {
+  background-color: #3e8e41;
 }

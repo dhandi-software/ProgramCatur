@@ -12,14 +12,14 @@
     <div class="container">
       <h1>THE CHESS CHALLENGE</h1>
       <!-- Tampilkan Nama dan NPM Pemain -->
-      <div class="players-info">
-        <h2>Player 1</h2>
-        <p>Nama: <%= player1.name %></p>
-        <p>NPM: <%= player1.npm %></p>
-
-        <h2>Player 2</h2>
-        <p>Nama: <%= player2.name %></p>
-        <p>NPM: <%= player2.npm %></p>
+      <div class="players-info" id="players-info">
+        <h2 id="current-player">
+          Giliran: <span id="current-player-name"><%= player1.name %></span>
+        </h2>
+        <p>Player 1 Nama: <%= player1.name %></p>
+        <p>Player 1 NPM: <%= player1.npm %></p>
+        <p>Player 2 Nama: <%= player2.name %></p>
+        <p>Player 2 NPM: <%= player2.npm %></p>
       </div>
       <ul>
         <div class="div" id="row8">
@@ -111,7 +111,7 @@
         </div>
       </ul>
 
-      <h2 id="tog">White's Turn</h2>
+      <h2 id="tog">Player 1 Nama: <%= player1.name %></h2>
       <h2 id="reset-btn">Reset</h2>
     </div>
 
@@ -120,6 +120,12 @@
       <source src="bossa_uh_potsu.mp3" type="audio/mpeg" />
     </audio>
 
+    <script>
+      window.playerData = {
+        player1: { name: "<%= player1.name %>", npm: "<%= player1.npm %>" },
+        player2: { name: "<%= player2.name %>", npm: "<%= player2.npm %>" },
+      };
+    </script>
     <script src="/js/pvp.js"></script>
 
     <!-- Pustaka Particles.js -->

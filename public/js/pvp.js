@@ -81,8 +81,16 @@ document.getElementById("reset-btn").addEventListener("click", function () {
     location.reload();
 });
 
+const player1 = window.playerData.player1;
+const player2 = window.playerData.player2;
 
-tog = 1
+document.getElementById('tog').innerText = `Player 1 Nama: ${player1.name}`;
+
+
+
+let tog = 1
+
+console.log(player1)
 
 document.querySelectorAll('.box').forEach(item => {
 
@@ -91,7 +99,11 @@ document.querySelectorAll('.box').forEach(item => {
 
              // Tentukan giliran pemain dan warna pion yang dapat digerakkan
         const isWhiteTurn = tog % 2 !== 0;
-        const pieceColor = item.innerText.startsWith('W') ? 'white' : item.innerText.startsWith('B') ? 'black' : '';
+        const pieceColor = item.innerText.startsWith("W")
+        ? "player1"
+        : item.innerText.startsWith("B")
+        ? "player2"
+        : "";
 
         // Logika untuk memindahkan pion atau memakan pion lawan
         if (item.style.backgroundColor === 'greenyellow') {
@@ -484,16 +496,17 @@ document.querySelectorAll('.box').forEach(item => {
 
         }
 
-        // Toggling the turn
-
         if (tog % 2 !== 0) {
-            document.getElementById('tog').innerText = "White's Turn"
-            whosTurn('W')
+            document.getElementById('current-player-name').innerText = player1.name;
+            document.getElementById('tog').innerText = `Player 1 Nama: ${player1.name}`;
+            whosTurn('W');
         }
-        if (tog % 2 == 0) {
-            document.getElementById('tog').innerText = "Black's Turn"
-            whosTurn('B')
+        if (tog % 2 === 0) {
+            document.getElementById('current-player-name').innerText = player2.name;
+            document.getElementById('tog').innerText = `Player 2 Nama: ${player2.name}`;
+            whosTurn('B');
         }
+        
 
         reddish()
 

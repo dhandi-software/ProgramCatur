@@ -97,3 +97,27 @@ body {
   background-color: #ffd700;
   color: #000;
 }
+
+/* Gaya untuk daftar developer */
+.developer-list {
+  list-style-type: none; /* Hilangkan bullet */
+  padding: 0;
+  margin: 0;
+}
+
+.developer-list li {
+  background-color: #f0f0f0; 
+  margin: 10px 0; 
+  padding: 10px; 
+  border-radius: 5px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, background-color 0.2s; 
+  color: #000;
+}
+
+/* Efek hover pada kotak */
+.developer-list li:hover {
+  background-color: #ffd700; 
+  transform: scale(1.05); 
+  cursor: pointer; 
+}
