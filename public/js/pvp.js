@@ -84,58 +84,71 @@ document.getElementById("reset-btn").addEventListener("click", function () {
 const player1 = window.playerData.player1;
 const player2 = window.playerData.player2;
 
+// Set informasi pemain di bagian atas layar
 document.getElementById('tog').innerText = `Player 1 Nama: ${player1.name}`;
 
+// Fungsi untuk memperbarui tampilan giliran
+function updateTurnDisplay() {
+    const currentPlayer = tog % 2 !== 0 ? player1.name : player2.name;
+    document.getElementById('current-player-name').innerText = currentPlayer;
+    document.getElementById('tog').innerText = `Giliran: ${currentPlayer}`;
+}
 
+// Giliran pemain dimulai dari Player 1
+let tog = 1;
 
-let tog = 1
-
-console.log(player1)
-
+// Tambahkan event listener ke setiap kotak pada papan catur
 document.querySelectorAll('.box').forEach(item => {
+  item.addEventListener('click', function () {
+    // Tentukan giliran pemain dan warna pion yang dapat digerakkan
+    const isWhiteTurn = tog % 2 !== 0; // True jika giliran Player 1 (pion putih)
+    const pieceColor = item.innerText.startsWith("W")
+      ? "player1" // Jika pion putih
+      : item.innerText.startsWith("B")
+      ? "player2" // Jika pion hitam
+      : "";
 
+    // Jika kotak dipilih adalah kotak hijau muda (valid move)
+    if (item.style.backgroundColor === 'greenyellow') {
+      if (item.innerText.length === 0) {
+        // Jika kotak hijau muda kosong, lakukan langkah normal
+        tog++;
+      } else if (item.innerText.startsWith(isWhiteTurn ? 'B' : 'W')) {
+        // Jika memakan pion lawan, perbarui posisi
+        document.querySelectorAll('.box').forEach(i => {
+          if (i.style.backgroundColor === 'blue') {
+            let blueId = i.id;
+            let blueText = i.innerText;
 
-    item.addEventListener('click', function () {
-
-             // Tentukan giliran pemain dan warna pion yang dapat digerakkan
-        const isWhiteTurn = tog % 2 !== 0;
-        const pieceColor = item.innerText.startsWith("W")
-        ? "player1"
-        : item.innerText.startsWith("B")
-        ? "player2"
-        : "";
-
-        // Logika untuk memindahkan pion atau memakan pion lawan
-        if (item.style.backgroundColor === 'greenyellow') {
-            // Jika kotak berwarna hijau muda dan kosong (bergerak tanpa makan)
-            if (item.innerText.length === 0) {
-                tog++;
-            } 
-            // Jika kotak berwarna hijau muda dan berisi pion lawan, maka pion tersebut dimakan
-            else if (item.innerText.startsWith(isWhiteTurn ? 'B' : 'W')) {
-                document.querySelectorAll('.box').forEach(i => {
-                    if (i.style.backgroundColor === 'blue') {
-                        let blueId = i.id;
-                        let blueText = i.innerText;
-
-                        // Pindahkan pion ke kotak yang berisi pion lawan
-                        document.getElementById(blueId).innerText = ''; // Hapus pion dari kotak asal
-                        item.innerText = blueText; // Gantikan pion lawan dengan pion pemain saat ini
-                        coloring(); // Perbarui tampilan papan
-                        insertImage(); // Tambahkan gambar pion yang baru
-                        tog++; // Ganti giliran setelah memakan pion lawan
-                    }
-                });
-            } else {
-                // Jika kotak hijau muda berisi pion sendiri, tidak boleh makan
-                alert("Gerakan tidak valid! Anda tidak dapat memakan pion sendiri.");
-            }
-        } else if (pieceColor && ((isWhiteTurn && pieceColor === 'black') || (!isWhiteTurn && pieceColor === 'white'))) {
-            // Menampilkan pesan jika pengguna mencoba memilih pion lawan di luar area valid
-            alert("Gerakan tidak valid! Anda tidak dapat menggerakkan pion lawan.");
+            // Pindahkan pion
+            document.getElementById(blueId).innerText = ''; // Hapus dari kotak asal
+            item.innerText = blueText; // Tambahkan pion ke kotak baru
+            coloring(); // Perbarui tampilan papan
+            insertImage(); // Perbarui gambar pion
+            tog++; // Ganti giliran setelah berhasil memakan
+          }
+        });
+      } else {
+        // Jika kotak hijau muda berisi pion sendiri
+        alert("Gerakan tidak valid! Anda tidak dapat memakan pion sendiri.");
+      }
+    }   // Validasi gerakan pemain
+    else if (pieceColor) {
+        if (isWhiteTurn && pieceColor === "player2") {
+            // Jika giliran Player 1 tetapi memilih pion Player 2
+            alert(`Gerakan tidak valid! Giliran ${player1.name}, Anda tidak dapat memilih pion ${player2.name}.`);
+        } else if (!isWhiteTurn && pieceColor === "player1") {
+            // Jika giliran Player 2 tetapi memilih pion Player 1
+            alert(`Gerakan tidak valid! Giliran ${player2.name}, Anda tidak dapat memilih pion ${player1.name}.`);
+        } else {
+            // Validasi berhasil, lanjutkan proses permainan
+            console.log(`Pion valid dipilih oleh ${isWhiteTurn ? player1.name : player2.name}`);
         }
-
-        // Dapatkan ID dan posisi kotak untuk penentuan langkah selanjutnya
+    } else {
+        // Jika kotak kosong diklik tanpa memilih pion
+        alert(`Gerakan tidak valid! ${isWhiteTurn ? player1.name : player2.name}, Anda harus memilih pion.`);
+    }
+      
         let getId = item.id;
         let arr = Array.from(getId);
         arr.shift();
