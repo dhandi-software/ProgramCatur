@@ -148,3 +148,42 @@ body {
   font-size: 1.5em;
   font-weight: bold;
 }
+
+
+/* Posisi Tombol Suara */
+.sound-button {
+  position: absolute;
+  top: 10px;
+  left: 10px; /* Posisikan di kiri container */
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  color: #ffd700;
+  cursor: pointer;
+}
+
+/* Kontainer untuk Tombol Suara dan Slider */
+.sound-control {
+  position: absolute;
+  top: 10px;
+  left: 10px; /* Posisikan kontainer di kiri container utama */
+  display: inline-block;
+}
+
+/* Slider Volume */
+#volume-slider {
+  position: absolute;
+  top: 50%;
+  left: 120%; /* Tampilkan slider di sebelah kanan tombol suara */
+  transform: translateY(-50%);
+  width: 100px;
+  opacity: 0; /* Sembunyikan slider */
+  transition: opacity 0.3s;
+  pointer-events: none; /* Nonaktifkan interaksi saat tersembunyi */
+}
+
+/* Tampilkan Slider Saat Hover */
+.sound-control:hover #volume-slider {
+  opacity: 1; /* Tampilkan slider */
+  pointer-events: auto; /* Aktifkan interaksi */
+}

@@ -15,7 +15,20 @@
     <!-- Kontainer Utama untuk Pilihan Mode -->
     <div class="container">
       <!-- Tombol Suara -->
-      <button class="sound-button" onclick="toggleSound()">🔊</button>
+      <div class="sound-control">
+        <button class="sound-button" onclick="toggleSound()">🔊</button>
+        <input
+          type="range"
+          id="volume-slider"
+          min="0"
+          max="1"
+          step="0.1"
+          value="0.5"
+          oninput="adjustVolume(this.value)"
+        />
+        <audio id="chess-sound" src="/sounds/chess-sound.mp3" loop></audio>
+      </div>
+
       <!-- Tombol Close -->
       <button class="close-button" onclick="closeModal()">✕</button>
 
@@ -55,9 +68,6 @@
       </div>
     </div>
 
-    <!-- Suara Catur -->
-    <audio id="chess-sound" src="/sounds/chess-sound.mp3" loop></audio>
-
     <script>
       function startPvP() {
         window.location.href = "/play/Border";
@@ -78,6 +88,11 @@
         } else {
           sound.pause();
         }
+      }
+
+      function adjustVolume(value) {
+        const sound = document.getElementById("chess-sound");
+        sound.volume = value; // Atur volume berdasarkan nilai slider
       }
 
       particlesJS("particles-js", {
