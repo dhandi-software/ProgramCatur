@@ -7,7 +7,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #1b1b1b;
+  background-color: #000000;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -55,8 +55,24 @@ body {
   left: 10px;
 }
 
+
 .close-button {
+  font-size: 30px;
+  border: 3px solid #ffd700;
+  border-radius: 5px;
   right: 10px;
+  width: 50px;
+  height: 45px;
+  color: aliceblue;
+  box-shadow: -3px 10px 15px rgba(0, 0, 0, 0.5);
+  
+}
+
+.close-button:hover {
+  background-color: #ffd700;
+  transform: scale(1.3) ;
+  box-shadow: -3px 10px 15px rgba(0, 0, 0, 0.7);
+  
 }
 
 /* Judul */
@@ -150,11 +166,19 @@ body {
 }
 
 
-/* Posisi Tombol Suara */
-.sound-button {
+/* Kontainer untuk Tombol Suara dan Slider */
+.sound-control {
   position: absolute;
-  top: 10px;
-  left: 10px; /* Posisikan di kiri container */
+  top: 10px; /* Jarak dari atas */
+  left: 10px; /* Jarak dari kiri */
+  display: flex; /* Flexbox untuk tata letak */
+  flex-direction: column; /* Atur elemen secara vertikal */
+  align-items: center; /* Pastikan elemen sejajar di tengah */
+  gap: 5px; /* Jarak antara tombol suara dan slider */
+}
+
+/* Tombol Suara */
+.sound-button {
   background: none;
   border: none;
   font-size: 1.5em;
@@ -162,25 +186,44 @@ body {
   cursor: pointer;
 }
 
-/* Kontainer untuk Tombol Suara dan Slider */
-.sound-control {
-  position: absolute;
-  top: 10px;
-  left: 10px; /* Posisikan kontainer di kiri container utama */
-  display: inline-block;
-}
-
 /* Slider Volume */
 #volume-slider {
-  position: absolute;
-  top: 50%;
-  left: 120%; /* Tampilkan slider di sebelah kanan tombol suara */
-  transform: translateY(-50%);
-  width: 100px;
-  opacity: 0; /* Sembunyikan slider */
-  transition: opacity 0.3s;
+  width: 120px; /* Lebar slider */
+  height: 6px; /* Ketebalan slider */
+  -webkit-appearance: none; /* Hilangkan gaya default */
+  appearance: none;
+  background-color: #ffd700; /* Warna slider */
+  border-radius: 5px; /* Buat sudut slider melengkung */
+  outline: none;
+  cursor: pointer;
+  opacity: 0;
   pointer-events: none; /* Nonaktifkan interaksi saat tersembunyi */
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; /* Tambahkan transisi transformasi */
+  transform: scaleX(0.8); /* Awal slider lebih kecil */
 }
+
+/* Titik Slider */
+#volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px; /* Ukuran titik */
+  height: 16px;
+  background-color: red; /* Warna titik */
+  border-radius: 50%; /* Buat titik melingkar */
+  cursor: pointer;
+  border: 2px solid #ffd700;
+}
+
+#volume-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background-color: red;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #ffd700;
+}
+
+
 
 /* Tampilkan Slider Saat Hover */
 .sound-control:hover #volume-slider {

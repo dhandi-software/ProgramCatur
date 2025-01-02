@@ -82,8 +82,8 @@ button {
 }
 
 button:hover {
-  background-color: #d8d508;
-  color: #fffffd;
+  background-color: #fffc56;
+  color: #000000;
   font-size: 18px;
   font-weight: bold;
 }
